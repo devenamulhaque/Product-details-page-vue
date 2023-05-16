@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue Mastery</title>
+    <!-- Import Styles -->
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <!-- Import Vue.js -->
+    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="product-display">
+        <div class="todos">
+            <h1>Todos</h1>
+            <div v-if="inProgressTodos.length">
+                <h2>In Progress tasks</h2>
+                <ul>
+                    <li v-for="todo in inProgressTodos" :key="todo.id">
+                        <label>
+                            <input type="checkbox" v-model="todo.complete">
+                            {{todo.task}}
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <div v-if="completedTodos.length">
+                <h2>Completed tasks</h2>
+                <ul>
+                    <li v-for="todo in completedTodos" :key="todo.id">
+                        <label>
+                            <input type="checkbox" v-model="todo.complete">
+                            <del>{{todo.task}}</del>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Import Js -->
+
+    <script>
+        const App = Vue.createApp({
+            data(){
+                return {
+                    todos: [
+                        {
+                            task: "Check the file",
+                            complete: false,
+                            id: 10
+                        },
+                        {
+                            task: "Check the image of Panda",
+                            complete: true,
+                            id: 11
+                        },
+                        {
+                            task: "Testing for Vue",
+                            complete: false,
+                            id: 12
+                        },
+                        {
+                            task: "Testing for reactjs",
+                            complete: false,
+                            id: 13
+                        },
+                    ]
+                }
+            },
+            computed: {
+                completedTodos() {
+                    return this.todos.filter(done => done.complete)
+                },
+                inProgressTodos () {
+                    return this.todos.filter(done => !done.complete)
+                }
+            }
+        })
+
+      App.mount('#app')
+    </script>
+  </body>
+</html>
