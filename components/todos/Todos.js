@@ -4,8 +4,8 @@ export default {
     template: `
     <div class="todos">
     <h1 class="text-3xl mb-5">Todos</h1>
-        <todo-list :todos="inProgressTodos" title="Completed list"></todo-list>
-        <todo-list :todos="completedTodos" title="In Progress list"></todo-list>
+        <todo-list :todos="filtered.inProgress" title="Completed list"></todo-list>
+        <todo-list :todos="filtered.completed" title="In Progress list"></todo-list>
     </div>
     `,
     data(){
@@ -35,11 +35,11 @@ export default {
         }
     },
     computed: {
-        completedTodos() {
-            return this.todos.filter(done => done.complete)
-        },
-        inProgressTodos () {
-            return this.todos.filter(done => !done.complete)
+        filtered () {
+            return {
+                inProgress: this.todos.filter(done => !done.complete),
+                completed: this.todos.filter(done => done.complete)
+            }
         }
     }
 }
