@@ -1,5 +1,5 @@
 const App = Vue.createApp({
-    data: function(){
+    data(){
         return {
             product: "Car toy",
             description: "This toy is very useful for Children and adults.",
