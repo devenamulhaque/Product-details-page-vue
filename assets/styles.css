@@ -183,7 +183,7 @@ ul {
   display: flex;
   align-items: center;
 }
-.todos input {
+.todos input[type=checkbox] {
   width: 20px;
   height: 20px;
   margin-bottom: 0;
