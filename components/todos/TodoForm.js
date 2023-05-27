@@ -12,7 +12,9 @@ export default {
     },
     methods: {
         addNew() {
-            this.$emit('add', this.newTodoItem)
+            if (this.newTodoItem !== '') {
+                this.$emit('add', this.newTodoItem)
+            }
             this.newTodoItem = ''
         }
     }
